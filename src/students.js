@@ -14,5 +14,9 @@ function showStudents() {
 function addStudent(name) {
     fs.appendFileSync("./src/data.txt",  "\n" + name);
 }
+function removeStudent(name) {
+    const students = loadStudents().filter(s => s.trim() !== name);
+    fs.writeFileSync("./src/data.txt", students.join("\n") + "\n");
+}
 
-module.exports = { showStudents, addStudent };
+module.exports = { showStudents, addStudent, removeStudent };
